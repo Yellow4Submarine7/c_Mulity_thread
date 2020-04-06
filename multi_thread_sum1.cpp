@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int *sum = new int[20];
+int *sum = new int[20];     //任何一个数组都需要初始化
 struct thread_data{
     int thread_id;
     int ave_num;
