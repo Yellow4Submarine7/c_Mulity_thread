@@ -3,7 +3,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<pthread.h>
-
+//目前只能在N可被M整除时计算正确
 using namespace std;
 
 int *sum = new int[20];     //任何一个数组都需要初始化
