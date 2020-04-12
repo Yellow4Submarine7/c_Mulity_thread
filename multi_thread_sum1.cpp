@@ -3,7 +3,9 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<pthread.h>
-//目前只能在N可被M整除时计算正确
+#include<mutex>
+//目前只能在N可被M整除时计算正确x
+//目前所有情况都能整除正确
 using namespace std;
 
 int *sum = new int[20];     //任何一个数组都需要初始化
@@ -14,6 +16,7 @@ struct thread_data{
 
 void* sum_job(void* threadarg)    //每个子线程处理一个部分
 {
+    mutex my_mutex;
     struct thread_data *my_data;
     my_data = (struct thread_data *) threadarg;
     int n = (int)my_data->thread_id;
@@ -24,7 +27,9 @@ void* sum_job(void* threadarg)    //每个子线程处理一个部分
     sum[n] = 0;
 
     for(i=start; i <= end; i++){
+        my_mutex.lock();
         sum[n] = sum[n] + i;
+        my_mutex.unlock();
     }
      printf("线程id是 %d,start = %d,end = %d,计算结果为 %d \n",n,start,end,sum[n]);
 
