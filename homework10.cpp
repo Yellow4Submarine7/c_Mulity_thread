@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <mpi.h>
  
-#define BUFMAX 81
+#define BUFMAX 50
  
 int main(int argc, char *argv[])
 {
@@ -15,7 +15,6 @@ int main(int argc, char *argv[])
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
  
-    //sprintf(outbuf, "Hello, world! from process %d of %d", rank, size);
  
     sendto = (rank + 1) % size;
     recvfrom = ((rank + size) - 1) % size;
