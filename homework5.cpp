@@ -14,10 +14,10 @@ int main(int argc,char**argv)
     double sum  = 0,x;
     int i;
     //omp_lock_t lock;
-   // omp_init_lock(&lock);
-    #pragma omp parallel for schedule(guided,10)
+    //omp_init_lock(&lock);
+    #pragma omp parallel 
     for(i=0;i<=steps;i++){
-    //    omp_set_lock(&lock);
+      //  omp_set_lock(&lock);
         x = (i+0.5)*step;
         sum = sum+4/(1+x*x)*step;
      //   omp_unset_lock(&lock);
